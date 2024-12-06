@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <sstream>
+#include <string>
 
 class KthLargestFinder {
 private:
-    // Partition function for QuickSelect algorithm
     int partition(std::vector<int>& arr, int left, int right) {
         int pivot = arr[right];
         int i = left - 1;
@@ -20,13 +20,10 @@ private:
         return i + 1;
     }
 
-    // Recursive QuickSelect to find Kth largest element
     int quickSelect(std::vector<int>& arr, int left, int right, int k) {
         if (left == right) return arr[left];
 
         int pivotIndex = partition(arr, left, right);
-
-        // Calculate the relative position of the pivot
         int relativePivotPosition = pivotIndex - left + 1;
 
         if (k == relativePivotPosition) {
@@ -41,7 +38,6 @@ private:
     }
 
 public:
-    // Main method to find Kth largest element
     int findKthLargest(std::vector<int>& arr, int k) {
         if (k < 1 || k > arr.size()) {
             throw std::invalid_argument("Invalid k value");
@@ -49,31 +45,59 @@ public:
 
         return quickSelect(arr, 0, arr.size() - 1, k);
     }
+
+    // New method to get user input
+    static std::vector<int> getArrayInput() {
+        std::vector<int> arr;
+        std::string line;
+
+        std::cout << "Enter array elements (space-separated): ";
+        std::getline(std::cin, line);
+
+        std::istringstream iss(line);
+        int num;
+        while (iss >> num) {
+            arr.push_back(num);
+        }
+
+        return arr;
+    }
+
+    // New method to get K value
+    static int getKValue(int arraySize) {
+        int k;
+        while (true) {
+            std::cout << "Enter K (1-" << arraySize << "): ";
+            std::cin >> k;
+
+            if (k > 0 && k <= arraySize) {
+                return k;
+            }
+
+            std::cout << "Invalid K. Please try again.\n";
+        }
+    }
 };
 
-// Function to solve the problem for given test cases
-void solveTestCase(std::vector<int> arr, int k) {
-    KthLargestFinder finder;
-
-    std::cout << "Array: ";
-    for (int num : arr) std::cout << num << " ";
-    std::cout << "\nK: " << k << std::endl;
-
+int main() {
     try {
+        // Get array input from user
+        std::vector<int> arr = KthLargestFinder::getArrayInput();
+
+        // Get K value from user
+        int k = KthLargestFinder::getKValue(arr.size());
+
+        // Create finder object
+        KthLargestFinder finder;
+
+        // Find and display Kth largest element
         int result = finder.findKthLargest(arr, k);
-        std::cout << "Kth Largest Element: " << result << std::endl;
+
+        std::cout << "The " << k << "th largest element is: " << result << std::endl;
     }
     catch (const std::exception& e) {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
     }
-    std::cout << std::endl;
-}
-
-int main() {
-    // Test cases from the problem statement
-    solveTestCase({15, 3, 8, 12, 7, 10, 5}, 3);
-    solveTestCase({100, 50, 75, 25, 125, 90, 60, 30}, 5);
-    solveTestCase({5, 20, 10, 15, 25, 35, 30}, 2);
 
     return 0;
 }
