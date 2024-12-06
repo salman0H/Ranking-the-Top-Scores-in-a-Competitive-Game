@@ -1,44 +1,78 @@
-# Kth Largest Element Finder
+# Kth Largest Element Finder 🏆
 
-## Project Overview
-This C++ project implements a Divide & Conquer algorithm to find the Kth largest element in an array efficiently using the QuickSelect method.
+## Project Description
+An efficient C++ implementation of the QuickSelect algorithm to find the Kth largest element in an array using the Divide & Conquer approach.
 
-## Problem Statement
-In the competitive game "CodeWarz", the leaderboard system needs to quickly identify the Kth largest score from a large dataset of player scores.
+## 🌟 Features
+- Interactive user input
+- QuickSelect algorithm
+- O(n) average time complexity
+- Dynamic array size support
+- Robust input validation
 
-## Algorithm Approach
+## 🛠 Technical Overview
+
+### Algorithm
 - **Method**: QuickSelect (Divide & Conquer)
-- **Time Complexity**: O(n) average case, O(n²) worst case
+- **Time Complexity**: O(n) average case
 - **Space Complexity**: O(1)
 
-## Features
-- Efficiently finds the Kth largest element
-- Handles multiple test cases
-- Error handling for invalid inputs
-- In-place array modification
+### Key Functions
+- `partition()`: Array partitioning around pivot
+- `quickSelect()`: Recursive element search
+- `findKthLargest()`: Main algorithm implementation
 
-## How It Works
-1. Uses recursive partitioning to narrow down the search space
-2. Selects a pivot element in each iteration
-3. Rearranges array elements around the pivot
-4. Recursively searches the appropriate subarray
+## 📦 Requirements
+- C++ Compiler (C++11 or later)
+- Standard Template Library (STL)
 
-## Example Usage
+## 📝 Libraries Used
 ```cpp
-KthLargestFinder finder;
-std::vector<int> arr = {15, 3, 8, 12, 7, 10, 5};
-int k = 3;
-int result = finder.findKthLargest(arr, k); // Returns 10
+#include <iostream>     // Console I/O
+#include <vector>       // Dynamic arrays
+#include <sstream>      // String stream processing
+#include <string>       // String manipulation
 ```
 
-## Test Cases
-- `[15, 3, 8, 12, 7, 10, 5]`, k = 3
-- `[100, 50, 75, 25, 125, 90, 60, 30]`, k = 5
-- `[5, 20, 10, 15, 25, 35, 30]`, k = 2
-
-## Compilation
-Compile with a C++11 or later compiler:
+## 🚀 Compilation
 ```bash
-g++ -std=c++11 kth_largest.cpp -o kth_largest
+g++ -std=c++11 main.cpp -o kth_largest
 ```
 
+## 💻 Usage Example
+```
+Enter array elements (space-separated): 15 3 8 12 7 10 5
+Enter K (1-7): 3
+The 3th largest element is: 10
+```
+
+## 🔍 Algorithm Workflow
+1. Select pivot element
+2. Partition array
+3. Recursively narrow search space
+4. Find Kth largest element
+
+## 🛡️ Error Handling
+- Input validation
+- K value range check
+- Exception handling
+
+## 📊 Performance Metrics
+- Best Case: O(n)
+- Average Case: O(n)
+- Worst Case: O(n²)
+
+## 🔬 Use Cases
+- Gaming leaderboards
+- Competitive ranking systems
+- Large dataset processing
+
+## 🤝 Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit changes
+4. Push to the branch
+5. Create pull request
+
+## 👥 Authors
+Salman Hashemi
